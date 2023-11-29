@@ -85,6 +85,7 @@
 						blockType: Scratch.BlockType.REPORTER,
 						text: 'total FNAF World characters'
 					},
+					'---',
 					{
 						opcode: 'getCharacterAI',
 						blockType: Scratch.BlockType.REPORTER,
