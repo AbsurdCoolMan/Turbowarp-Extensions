@@ -25,7 +25,7 @@
 					{
 						opcode: 'getGameReleaseDate',
 						blockType: Scratch.BlockType.REPORTER,
-						text: 'get release date for [GAME]',
+						text: 'release date for[GAME]',
 						arguments: {
 							GAME: {
 								type: Scratch.ArgumentType.STRING,
@@ -38,7 +38,7 @@
 					{
 						opcode: 'isGameSpinoff',
 						blockType: Scratch.BlockType.BOOLEAN,
-						text: 'is game[GAME] a spinoff?',
+						text: 'is game[GAME]a spinoff?',
 						arguments: {
 							GAME: {
 								type: Scratch.ArgumentType.STRING,
@@ -50,7 +50,7 @@
 					{
 						opcode: 'wasDevelopedBySteelWool',
 						blockType: Scratch.BlockType.BOOLEAN,
-						text: 'was game[GAME] developed by Steel Wool Studios?',
+						text: 'was game[GAME]developed by Steel Wool Studios?',
 						arguments: {
 							GAME: {
 								type: Scratch.ArgumentType.STRING,
@@ -89,7 +89,7 @@
 					{
 						opcode: 'getCharacterAI',
 						blockType: Scratch.BlockType.REPORTER,
-						text: 'get AI level for character[CHAR]',
+						text: 'AI level for character[CHAR]',
 						arguments: {
 							CHAR: {
 								type: Scratch.ArgumentType.STRING,
@@ -136,7 +136,7 @@
 					{
 						opcode: 'wasMoveOpportunityForCharacterSuccess',
 						blockType: Scratch.BlockType.BOOLEAN,
-						text: 'was move opportunity for character[CHAR] successful?',
+						text: 'was move opportunity for character[CHAR]successful?',
 						arguments: {
 							CHAR: {
 								type: Scratch.ArgumentType.STRING,
