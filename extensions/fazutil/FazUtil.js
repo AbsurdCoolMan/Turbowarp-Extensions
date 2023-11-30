@@ -134,9 +134,9 @@
 						}
 					},
 					{
-						opcode: 'getCharacterMoveResult',
+						opcode: 'wasMoveOpportunityForCharacterSuccess',
 						blockType: Scratch.BlockType.BOOLEAN,
-						text: 'move opportunity result for character[CHAR]',
+						text: 'was move opportunity for character[CHAR] successful?',
 						arguments: {
 							CHAR: {
 								type: Scratch.ArgumentType.STRING,
@@ -328,7 +328,7 @@
 			});
 		}
 		
-		getCharacterMoveResult(args) {
+		wasMoveOpportunityForCharacterSuccess(args) {
 			var canMove = false;
 			
 			if (characterMoves[args.CHAR]) {
