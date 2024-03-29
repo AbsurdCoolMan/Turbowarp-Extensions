@@ -16,7 +16,7 @@ class RhythmUtil {
                             type: Scratch.ArgumentType.NUMBER
                         },
                         FRAMES: {
-                            type: Scratch.ArgumentType.FRAMES
+                            type: Scratch.ArgumentType.NUMBER
                         }
                     }
                 }
