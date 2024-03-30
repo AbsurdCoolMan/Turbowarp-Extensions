@@ -1,14 +1,14 @@
 (function(Scratch){
     'use strict';
 
-    var songPosition = 0;
+    let songPosition = 0;
 
-    var bpm = 0;
-    var crochet = (60 / bpm) * 1000;
-    var stepCrochet = crochet / 4;
+    let bpm = 0;
+    let crochet = (60 / bpm) * 1000;
+    let stepCrochet = crochet / 4;
 
-    var currentStep = 0;
-    var currentBeat = 0;
+    let currentStep = 0;
+    let currentBeat = 0;
 
     class FunkinUtil {
         getInfo() {
@@ -16,8 +16,6 @@
                 id: 'funkinutil',
                 name: 'Funkin Util',
                 color1: '#f542d1',
-                color2: '#b8339d',
-                color3: '#661156',
                 blocks: [
                     {
                         opcode: 'whenStepHit',
@@ -162,12 +160,12 @@
         }
 
         calculateSteps(args) {
-            var oldStep = currentStep;
+            let oldStep = currentStep;
 
             // Calculates steps
-            var sections = Math.round(args.LENGTH / 16);
-            var stepTime = 0;
-            var songTime = 0;
+            let sections = Math.round(args.LENGTH / 16);
+            let stepTime = 0;
+            let songTime = 0;
 
             for (var i = 0; i++; i < sections) {
                 stepTime += 16;
