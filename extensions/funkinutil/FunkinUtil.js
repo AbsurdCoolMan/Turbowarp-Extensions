@@ -1,9 +1,5 @@
-(function(Scratch) {
+(function(Scratch){
     'use strict';
-
-    if (!Scratch.extensions.unsandboxed) {
-        throw new Error('This example must run unsandboxed');
-    }
 
     var songPosition = 0;
 
@@ -25,17 +21,15 @@
                 blocks: [
                     {
                         opcode: 'whenStepHit',
-                        blockType: Scratch.BlockType.HAT,
+                        blockType: Scratch.BlockType.EVENT,
                         text: 'when step hit',
-                        isEdgeActivated: false,
-                        shouldRestartExistingThreads: true
+                        isEdgeActivated: false
                     },
                     {
                         opcode: 'whenBeatHit',
-                        blockType: Scratch.BlockType.HAT,
+                        blockType: Scratch.BlockType.EVENT,
                         text: 'when beat hit',
-                        isEdgeActivated: false,
-                        shouldRestartExistingThreads: true
+                        isEdgeActivated: false
                     },
                     '---',
                     {
@@ -113,6 +107,26 @@
                             }
                         }
                     },
+                    {
+                        opcode: 'getLerp',
+                        blockType: Scratch.BlockType.REPORTER,
+                        text: 'lerp a [A] b [B] t [T]',
+                        disableMonitor: true,
+                        arguments: {
+                            A: {
+                                type: Scratch.ArgumentType.NUMBER,
+                                defaultValue: 0
+                            },
+                            B: {
+                                type: Scratch.ArgumentType.NUMBER,
+                                defaultValue: 0
+                            },
+                            T: {
+                                type: Scratch.ArgumentType.NUMBER,
+                                defaultValue: 0
+                            }
+                        }
+                    },
                     '---',
                     {
                         opcode: 'getSongPosition',
@@ -164,9 +178,9 @@
             currentBeat = Math.floor(currentStep / 4);
 
             if (oldStep != currentStep && currentStep >= 0) {
-                util.startHats('funkinutil_whenStepHit', {});
+                Scratch.vm.runtime.startHats('funkinutil_whenStepHit', {});
                 if (currentStep % 4 == 0) {
-                    util.startHats('funkinutil_whenBeatHit', {});
+                    Scratch.vm.runtime.startHats('funkinutil_whenBeatHit', {});
                 }
             }
         }
@@ -184,6 +198,10 @@
 
         getMilliToSecs(args) {
             return args.MILLISECONDS / 1000;
+        }
+
+        getLerp(args) {
+            return args.A + (args.B - args.A) * args.T;
         }
 
         getSongPosition() {
@@ -205,4 +223,4 @@
 
     // Registers the extension
     Scratch.extensions.register(new FunkinUtil());
-})(Scratch)
+}(Scratch));
