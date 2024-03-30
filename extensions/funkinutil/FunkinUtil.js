@@ -1,9 +1,13 @@
+// Author: AbsurdCoolMan/BendydrewScratch
+// Code BORROWED from the Funkin' source code, by NinjaMuffin99
+// Anyways, here's the source code of FNF: https://github.com/FunkinCrew/Funkin
+
 (function(Scratch){
     'use strict';
 
     let songPosition = 0;
 
-    let bpm = 0;
+    let bpm = 100;
     let crochet = (60 / bpm) * 1000;
     let stepCrochet = crochet / 4;
 
@@ -28,6 +32,28 @@
                         blockType: Scratch.BlockType.EVENT,
                         text: 'when beat hit',
                         isEdgeActivated: false
+                    },
+                    {
+                        opcode: 'whenEveryNumStepsHit',
+                        blockType: Scratch.BlockType.HAT,
+                        text: 'when every [NUMBER] steps hit',
+                        arguments: {
+                            NUMBER: {
+                                type: Scratch.ArgumentType.NUMBER,
+                                defaultValue: 5
+                            }
+                        }
+                    },
+                    {
+                        opcode: 'whenEveryNumBeatsHit',
+                        blockType: Scratch.BlockType.HAT,
+                        text: 'when every [NUMBER] beats hit',
+                        arguments: {
+                            NUMBER: {
+                                type: Scratch.ArgumentType.NUMBER,
+                                defaultValue: 5
+                            }
+                        }
                     },
                     '---',
                     {
@@ -56,15 +82,11 @@
                     {
                         opcode: 'calculateSteps',
                         blockType: Scratch.BlockType.COMMAND,
-                        text: 'calculate steps with song length [LENGTH] starting bpm [BPM]',
+                        text: 'calculate steps with song length [LENGTH]',
                         arguments: {
                             LENGTH: {
                                 type: Scratch.ArgumentType.NUMBER,
                                 defaultValue: 0
-                            },
-                            BPM: {
-                                type: Scratch.ArgumentType.NUMBER,
-                                defaultValue: 100
                             }
                         }
                     },
@@ -72,7 +94,7 @@
                     {
                         opcode: 'setBPM',
                         blockType: Scratch.BlockType.COMMAND,
-                        text: 'set BPM to [BPM]',
+                        text: 'set bpm to [BPM]',
                         arguments: {
                             BPM: {
                                 type: Scratch.ArgumentType.NUMBER,
@@ -145,9 +167,34 @@
                         opcode: 'getCurrentBeat',
                         blockType: Scratch.BlockType.REPORTER,
                         text: 'current beat'
+                    },
+                    {
+                        opcode: 'getCrochet',
+                        blockType: Scratch.BlockType.REPORTER,
+                        text: 'crochet'
+                    },
+                    {
+                        opcode: 'getStepCrochet',
+                        blockType: Scratch.BlockType.REPORTER,
+                        text: 'step crochet'
                     }
                 ]
             };
+        }
+
+        // HATS
+        whenEveryNumStepsHit(args) {
+            let did = currentStep % args.NUMBER == 0 && currentStep > 0;
+            return did;
+        }
+
+        whenEveryNumBeatsHit(args) {
+            let did = false;
+            if (currentStep % 4 == 0) {
+                did = currentBeat % args.NUMBER == 0 && currentBeat > 0;
+            }
+
+            return did;
         }
 
         // COMMANDS
@@ -169,7 +216,7 @@
 
             for (var i = 0; i++; i < sections) {
                 stepTime += 16;
-                songTime += (((60 / args.BPM) * 1000 / 4) * 16)
+                songTime += (((60 / bpm) * 1000 / 4) * 16);
             }
 
             currentStep = stepTime + Math.floor((songPosition - songTime) / stepCrochet);
@@ -216,6 +263,14 @@
 
         getCurrentBeat() {
             return currentBeat;
+        }
+
+        getCrochet() {
+            return crochet;
+        }
+
+        getStepCrochet() {
+            return stepCrochet;
         }
     }
 
