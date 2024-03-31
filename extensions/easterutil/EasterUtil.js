@@ -195,7 +195,8 @@
             var easterD = easterDay(year, 'day');
             var easterM = easterDay(year, 'month');
             var day = date.getDate();
-            var month = date.getMonth();
+            var month = date.getMonth() + 1;
+
             return day == easterD && month == easterM;
         }
 
