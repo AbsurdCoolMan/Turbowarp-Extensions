@@ -1,5 +1,8 @@
-// Author: AbsurdCoolMan :)
-// Happy Easter!
+// Name: Easter Util
+// ID: easterutil
+// Description: A utilties extension that's useful for Easter-themed projects.
+// By BendydrewScratch <https://scratch.mit.edu/users/BendydrewScratch/>
+// License: MPL-2.0
 
 (function(Scratch) {
     'use strict';
